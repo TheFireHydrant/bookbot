@@ -2,7 +2,8 @@ def get_book_words(booktext):
     with open(booktext) as f:
         text = f.read()
         words = text.split()
-    print(f"{len(words)} words found in the document")
+
+    return len(words)
 
 def get_book_char(booktext):
     with open(booktext) as f:
@@ -14,5 +15,18 @@ def get_book_char(booktext):
                 chars[(lower_text[char])] = 1
             else:
                 chars[(lower_text[char])] += 1
+    
+    return chars
 
-    print(chars)
+def sort_on(dict):
+    return dict["value"]
+
+def sort_dict(dict):
+    dicts = []
+    for char in dict:
+        temp_dict = {"char": char, "value": dict[char]}
+        dicts.append(temp_dict)
+        
+    dicts.sort(reverse=True, key=sort_on)
+
+    return dicts
